@@ -84,4 +84,4 @@ Clone this repo in your 'home' folder
 ```
 git clone https://github.com/oceansystemslab/ros_noetic.git
 ```
-Copy the files in src folder apart from 'catkin' to your ros_catkin_ws
+Copy the files in src folder apart from 'catkin' to your 'ros_catkin_ws/src'
