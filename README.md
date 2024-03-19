@@ -1,44 +1,7 @@
 # ROS Noetic on Ubuntu 22.04
 Instructions for compiling standard ROS Noetic (ros-noetic-desktop) on Ubuntu 22.04 and possible compilation issues. Instructions adapted from [here](http://wiki.ros.org/noetic/Installation/Source).
 
-## Instruction - Short version (not recommended)
-```
-sudo apt update
-sudo apt upgrade
-sudo apt install python3-pip
-```
-```
-sudo pip3 install -U rosdep rosinstall_generator vcstool catkin-pkg-modules==66.0.0 rospkg-modules==66.0.0
-```
-```
-sudo add-apt-repository ppa:malcscott/ppa
-sudo apt update 
-sudo apt install hddtemp
-```
-
-Clone this repo in your 'home' folder
-```
-git clone https://github.com/oceansystemslab/ros_noetic.git
-cd ros_noetic
-```
-
-Now resolve the dependencies for packages
-```
-rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro noetic -y
-```
-
-Compile the packages
-```
-./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release
-```
-
-Once compiled verify the installation
-```
-source ~/ros_noetic/install_isolated/setup.bash
-roscore
-```
-
-## Instructions - Long version (recommended)
+## Instructions
 Make sure you have python3 pip install 
 ```
 sudo apt update
@@ -114,3 +77,11 @@ Once compiled verify the installation
 source ~/ros_catkin_ws/install_isolated/setup.bash
 roscore
 ```
+
+## Packages added for reference if you want to avoid editing files, but make sure everything else done right
+
+Clone this repo in your 'home' folder
+```
+git clone https://github.com/oceansystemslab/ros_noetic.git
+```
+Copy the files in src folder apart from 'catkin' to your ros_catkin_ws
