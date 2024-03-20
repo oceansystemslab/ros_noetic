@@ -1,7 +1,47 @@
 # ROS Noetic on Ubuntu 22.04
 Instructions for compiling standard ROS Noetic (ros-noetic-desktop) on Ubuntu 22.04 and possible compilation issues. Instructions adapted from [here](http://wiki.ros.org/noetic/Installation/Source).
 
-## Instructions
+## Instructions (easy mode)
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install python3-pip
+```
+Then install rosdep which is not available in standard repos but available in python3 pip packages and other required packages
+```
+sudo pip3 install -U rosdep rosinstall_generator vcstool
+sudo pip3 install -U catkin-pkg-modules==66.0.0
+sudo pip3 install -U rospkg-modules==66.0.0
+```
+Then run
+```
+sudo rosdep init
+rosdep update
+```
+Also install hddtemp which is dependency for 'diagnostic_common_diagnostics' package.
+```
+sudo add-apt-repository ppa:malcscott/ppa
+sudo apt update 
+sudo apt install hddtemp
+```
+Clone this repo in your 'home' folder
+```
+git clone https://github.com/oceansystemslab/ros_noetic.git
+cd src
+```
+
+Now compile the packages
+```
+./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release
+```
+
+Once compiled verify the installation
+```
+source ~/ros_noetic/install_isolated/setup.bash
+roscore
+```
+
+## Instructions (recommended)
 Make sure you have python3 pip install 
 ```
 sudo apt update
@@ -64,7 +104,7 @@ Now we can compile the packages
 ```
 ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release
 ```
-- The compiler will throw an error for some packages that use 'rosconsole' compaling about things link 'shared_mutex'. This is because it is not compatible with older C++ standards. 
+- The compiler will throw an error for some packages that use 'rosconsole' complaining about things like 'shared_mutex'. This is because it is not compatible with older C++ standards. 
 - For these packages, go to their 'CMakelists.txt' and comment out code that sets C++ standard and set to C++17 like this
 ```
 set(CMAKE_CXX_STANDARD 17) # or
@@ -77,11 +117,3 @@ Once compiled verify the installation
 source ~/ros_catkin_ws/install_isolated/setup.bash
 roscore
 ```
-
-## Packages added for reference if you want to avoid editing files, but make sure everything else done right
-
-Clone this repo in your 'home' folder
-```
-git clone https://github.com/oceansystemslab/ros_noetic.git
-```
-Copy the files in src folder apart from 'catkin' to your 'ros_catkin_ws/src'
