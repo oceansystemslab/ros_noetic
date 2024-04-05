@@ -29,7 +29,10 @@ Clone this repo in your 'home' folder
 git clone https://github.com/oceansystemslab/ros_noetic.git
 cd src
 ```
-
+Now resolve rest of the dependencies for packages
+```
+rosdep install --from-paths ./src --ignore-packages-from-source --rosdistro noetic -y
+```
 Now compile the packages
 ```
 ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release
