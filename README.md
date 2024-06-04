@@ -27,7 +27,7 @@ sudo apt install hddtemp
 Clone this repo in your 'home' folder
 ```
 git clone https://github.com/oceansystemslab/ros_noetic.git
-cd src
+cd ros_noetic
 ```
 Now resolve rest of the dependencies for packages
 ```
